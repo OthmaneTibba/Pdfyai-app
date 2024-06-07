@@ -1,0 +1,20 @@
+<div class="h-screen w-full flex flex-col justify-center items-center">
+  <div
+    class="w-[600px] h-fit bg-white shadow-xl rounded-md flex flex-col items-center py-5"
+  >
+    <mat-icon class="text-[150px] w-[150px] h-[150px] text-green-600"
+      >check_circle</mat-icon
+    >
+
+    <h1 class="font-bold text-5xl text-indigo-900">Succees!</h1>
+
+    <p>Your payment was seccessful</p>
+
+    <button
+      [routerLink]="'/documents'"
+      class="bg-green-600 rounded-full text-white w-[80%] py-4 text-xl mt-2"
+    >
+      Back
+    </button>
+  </div>
+</div>

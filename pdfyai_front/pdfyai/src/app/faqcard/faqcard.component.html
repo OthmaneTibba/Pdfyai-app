@@ -1,0 +1,20 @@
+<div
+  class="w-[350px] md:w-[760px] h-[68px] border border-gray-900 flex-shrink-0 bg-white flex px-7 justify-between items-center"
+>
+  <span class="text-black text-ellipsis font-bold text-[0.69rem]">{{
+    question
+  }}</span>
+  @if (!open) {
+  <mat-icon (click)="onClick()" class="text-black">arrow_downward</mat-icon>
+  }@else {
+  <mat-icon class="text-black" (click)="onClick()">arrow_upward</mat-icon>
+  }
+</div>
+
+@if (open) {
+<p
+  class="md:w-[700px] text-center md:text-start text-[0.8rem] md:text-[1rem] mt-2 md:ml-2 fadein"
+>
+  {{ answer }}
+</p>
+}

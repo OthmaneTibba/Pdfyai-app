@@ -1,0 +1,16 @@
+@keyframes fadein-anim {
+    from{
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    to{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+.fadein{
+    animation: fadein-anim 1.4s ease-in-out;
+}

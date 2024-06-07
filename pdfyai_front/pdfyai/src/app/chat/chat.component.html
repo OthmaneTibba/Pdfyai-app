@@ -1,0 +1,162 @@
+<div
+  class="h-screen flex overflow-hidden flex-col"
+  (keydown.enter)="sendMessage()"
+>
+  <app-header></app-header>
+
+  @if(!isLoading){
+  <div class="md:grid flex md:grid-cols-2 overflow-scroll mt-3 h-full">
+    @if(pdf !== undefined){
+    <pdf-viewer
+      [src]="pdf"
+      [render-text]="true"
+      [original-size]="false"
+    ></pdf-viewer>
+    }@else {
+    <div class="w-full h-full flex flex-col justify-center items-center">
+      <div class="flex bg-black-400 gap-1 dots">
+        <div
+          class="w-[15px] h-[15px] bg-black rounded-full dots"
+          style="--delay: 200ms"
+        ></div>
+        <div
+          class="w-[15px] h-[15px] bg-black rounded-full dots"
+          style="--delay: 300ms"
+        ></div>
+        <div
+          class="w-[15px] h-[15px] bg-black rounded-full dots"
+          style="--delay: 400ms"
+        ></div>
+      </div>
+    </div>
+    }
+
+    <div class="flex-1 flex flex-col overflow-y-scroll">
+      <!-- Chat Messages -->
+      <div
+        class="chat-list flex-1 overflow-y-scroll p-4 overflow-x-hidden"
+        #scrollMe
+      >
+        <!-- 100 Chat Messages -->
+
+        @for (message of messages; track $index) { @if (message.role == "USER")
+        {
+
+        <div class="flex mb-4 cursor-pointer chat-message">
+          <div
+            class="w-9 h-9 rounded-full flex items-center justify-center mr-2"
+          >
+            @if(userService.user()?.picture != ""){
+            <img
+              [src]="userService.user()?.picture"
+              alt="User Avatar"
+              class="w-8 h-8 rounded-full"
+            />
+            }@else {
+            <img
+              src="../../assets/user.png"
+              alt="User Avatar"
+              class="w-10 h-10 rounded-full"
+            />
+            }
+          </div>
+          <div
+            class="mr-2 py-3 px-4 bg-blue-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white w-[90%]"
+          >
+            <p>{{ message.content }}</p>
+          </div>
+        </div>
+        }@else if(message.role == "BOOT" ){
+        <div
+          class="flex justify-end mb-4 cursor-pointer boot-response chat-message relative"
+        >
+          <div
+            class="flex max-w-96 bg-gray-300 text-black rounded-lg p-3 gap-3 w-[95%]"
+          >
+            {{ message.content.replace("```", "").replace("```", "") }}
+          </div>
+          <mat-icon
+            class="text-black z-30 absolute bottom-2 right-14"
+            (click)="copyText(message.content)"
+            >content_copy</mat-icon
+          >
+          <div
+            class="w-9 h-9 rounded-full flex items-center justify-center ml-2"
+          >
+            <img
+              src="../../assets/Logo.png"
+              alt="My Avatar"
+              class="w-10 h-10 rounded-full"
+            />
+          </div>
+        </div>
+        } } @if(isStreamingData){
+        <div class="flex justify-end mb-4 cursor-pointer">
+          <div
+            class="flex max-w-96 bg-gray-300 text-black rounded-lg p-3 gap-3 w-[90%]"
+          >
+            <div class="flex bg-black-400 gap-1 dots">
+              <div
+                class="w-[15px] h-[15px] bg-white rounded-full dots"
+                style="--delay: 200ms"
+              ></div>
+              <div
+                class="w-[15px] h-[15px] bg-white rounded-full dots"
+                style="--delay: 300ms"
+              ></div>
+              <div
+                class="w-[15px] h-[15px] bg-white rounded-full dots"
+                style="--delay: 400ms"
+              ></div>
+            </div>
+          </div>
+          <div
+            class="w-9 h-9 rounded-full flex items-center justify-center ml-2"
+          >
+            <img
+              src="../../assets/Logo.png"
+              alt="My Avatar"
+              class="w-8 h-8 rounded-full"
+            />
+          </div>
+        </div>
+        }
+      </div>
+
+      <!-- Chat Input -->
+      <div class="bg-white p-4 flex justify-between gap-2 items-center">
+        <input
+          [(ngModel)]="userMessage"
+          name="userMessage"
+          type="text"
+          class="w-full p-2 border rounded py-4 outline-none"
+          placeholder="Type your message..."
+        />
+        <div
+          (click)="sendMessage()"
+          class="bg-black text-white py-3 px-4 rounded-md hover:cursor-pointer"
+        >
+          <mat-icon>send</mat-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+  }@else {
+  <div class="w-full h-full flex flex-col justify-center items-center">
+    <div class="flex bg-black-400 gap-1 dots">
+      <div
+        class="w-[15px] h-[15px] bg-black rounded-full dots"
+        style="--delay: 200ms"
+      ></div>
+      <div
+        class="w-[15px] h-[15px] bg-black rounded-full dots"
+        style="--delay: 300ms"
+      ></div>
+      <div
+        class="w-[15px] h-[15px] bg-black rounded-full dots"
+        style="--delay: 400ms"
+      ></div>
+    </div>
+  </div>
+  }
+</div>

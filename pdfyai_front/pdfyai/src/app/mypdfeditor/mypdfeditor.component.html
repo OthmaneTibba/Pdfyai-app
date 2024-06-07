@@ -1,0 +1,19 @@
+<app-header></app-header>
+<div class="flex justify-between mx-auto container mt-3">
+  <h3 class="font-bold mt-3">Let's Generate your document 🤗</h3>
+
+  <button
+    (click)="generateFile()"
+    mat-stroked-button
+    class="bg-black text-white"
+  >
+    Generate
+  </button>
+</div>
+<div>
+  <angular-editor
+    class="h-full"
+    [placeholder]="'Enter text here...'"
+    [(ngModel)]="htmlContent"
+  ></angular-editor>
+</div>

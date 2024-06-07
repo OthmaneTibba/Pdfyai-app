@@ -1,0 +1,126 @@
+<mat-toolbar
+  class="flex bg-white items-center text-black mat-elevation-z1 sticky top-0 z-30"
+>
+  <div class="flex justify-between container mx-auto items-center">
+    @if(authService.isLogged()){
+    <img
+      class="w-[80px] block md:hidden"
+      src="../assets/Logo.png"
+      alt="Pdf Ai logo"
+    />
+    }@else {
+    <mat-icon
+      (click)="toggleMenu()"
+      class="block md:hidden hover:cursor-pointer"
+      >menu</mat-icon
+    >
+    }
+
+    <div [classList]="isOpen ? openMenuClass : closeMenuClass">
+      <div class="flex justify-between items-center">
+        <img class="w-[80px]" src="../assets/Logo.png" alt="Pdf Ai logo" />
+        <mat-icon (click)="toggleMenu()" class="text-white hover:cursor-pointer"
+          >close</mat-icon
+        >
+      </div>
+      <ul class="flex flex-col gap-3">
+        <li
+          (click)="scroolToHome()"
+          class="hover:cursor-pointer hover:text-gray-500 ease-in-out duration-500"
+        >
+          Home
+        </li>
+        <li
+          (click)="scroolToFeaturse()"
+          class="hover:cursor-pointer hover:text-gray-500 ease-in-out duration-500"
+        >
+          Features
+        </li>
+        <li
+          (click)="scroolToPricing()"
+          class="hover:cursor-pointer hover:text-gray-500 ease-in-out duration-500"
+        >
+          Pricing
+        </li>
+      </ul>
+    </div>
+
+    <div class="hidden md:block">
+      <img class="w-[80px]" src="../assets/Logo.png" alt="Pdf Ai logo" />
+    </div>
+
+    @if(!authService.isLogged()){
+    <ul class="hidden md:flex gap-8 justify-center ml-36 text-[0.9rem]">
+      <li
+        (click)="scroolToHome()"
+        class="hover:cursor-pointer hover:text-gray-500 ease-in-out duration-500"
+      >
+        Home
+      </li>
+      <li
+        (click)="scroolToFeaturse()"
+        class="hover:cursor-pointer hover:text-gray-500 ease-in-out duration-500"
+      >
+        Features
+      </li>
+      <li
+        (click)="scroolToPricing()"
+        class="hover:cursor-pointer hover:text-gray-500 ease-in-out duration-500"
+      >
+        Pricing
+      </li>
+    </ul>
+    } @if (!authService.isLogged() && !isLoading) {
+    <div id="buttonDiv"></div>
+    }@else if(authService.isLogged()) {
+    <div class="flex items-center">
+      <div class="flex">
+        <span
+          routerLink="/subscription"
+          class="font-bold text-[0.8rem] mr-3 hover:cursor-pointer"
+          >⭐️ Premium</span
+        >
+      </div>
+
+      <img
+        [src]="userService.user()?.picture"
+        class="w-10 h-10 rounded-full"
+        alt=""
+      />
+
+      <mat-icon [matMenuTriggerFor]="menu" class="hover:cursor-pointer"
+        >expand_more</mat-icon
+      >
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <p>{{ userService.user()?.username }}</p>
+          <p>{{ userService.user()?.email }}</p>
+        </button>
+
+        <button [routerLink]="'/profile'" mat-menu-item>
+          <mat-icon>person</mat-icon>
+          Profile
+        </button>
+        <button [routerLink]="'/documents'" mat-menu-item>
+          <mat-icon>folders</mat-icon>
+          Documents
+        </button>
+        <button [routerLink]="'/editor'" mat-menu-item>
+          <mat-icon>border_color</mat-icon>
+          Pdf editor
+        </button>
+        <button routerLink="/subscription" mat-menu-item>
+          <mat-icon>card_membership</mat-icon>
+          Premium ⭐️
+        </button>
+        <button (click)="logout()" mat-menu-item>
+          <mat-icon>logout</mat-icon>
+          Sign out
+        </button>
+      </mat-menu>
+    </div>
+    }@else if (isLoading) {
+    <mat-spinner class="w-[50px] h-[50px] text-blue-400"></mat-spinner>
+    }
+  </div>
+</mat-toolbar>

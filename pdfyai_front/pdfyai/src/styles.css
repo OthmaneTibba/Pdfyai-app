@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+* { margin: 0;  font-family: 'Poppins', sans-serif; }
+
+
+.angular-editor-textarea{
+
+    height: 100dvh !important;
+    resize: vertical;
+
+}
+
+.angular-editor-textarea:focus{
+
+    outline-color: black !important;
+}
+
+
+.angular-editor{
+    margin-left: 30px;
+    margin-right: 30px;
+}

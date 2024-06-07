@@ -1,0 +1,33 @@
+@keyframes animeDotos {
+    0%,44% {
+        transform: translateY(0px);
+    }
+
+    28%{
+        opacity: 0.4;
+        transform: translateY(-9px);
+    }
+    44%{
+        opacity: 0.2;
+       
+    }
+}
+
+pre{
+    word-wrap: break-word;
+}
+
+.dots{
+    animation: animeDotos 1s ease-in-out infinite  var(--delay) !important;
+}
+
+.chat-list{
+    scroll-behavior: smooth 0.5s;
+}
+
+.chat-message{
+    white-space: pre-line;
+    font-size: 15px;
+}
+
+

@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/pdfyai.props" />
+</Project>

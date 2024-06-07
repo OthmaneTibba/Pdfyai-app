@@ -1,0 +1,120 @@
+<div class="h-screen flex flex-col overflow-hidden">
+  <app-header></app-header>
+  <div class="container mx-auto">
+    <div class="flex flex-col h-screen">
+      <span class="text-center font-bold text-xl mt-3">My Documents</span>
+      <!-- Search field-->
+      <div class="flex justify-center gap-2 mt-3">
+        <input
+          #query
+          (input)="onSearch(query.value)"
+          class="outline-none border border-gray-400 w-[400px] py-2 px-2"
+          placeholder="Search"
+          type="text"
+        />
+        <input
+          (change)="onFilePicked($event)"
+          #file
+          hidden
+          type="file"
+          name=""
+          id=""
+        />
+        <button
+          [disabled]="isUploading || isReadingFile"
+          (click)="file.click()"
+          class="bg-black text-white font-bold flex justify-center items-center"
+          mat-stroked-button
+        >
+          <mat-icon>upload_file</mat-icon>
+          Upload
+        </button>
+      </div>
+      <!-- END Search field-->
+
+      @if(isUploading || isReadingFile || isDeleting){ @if(isUploading){
+      <h3 class="text-center text-black font-bold">Uploading file...</h3>
+      } @else if (isReadingFile) {
+      <h3 class="text-center text-black font-bold">Reading file...</h3>
+      }@else if(isDeleting){
+      <h3 class="text-center text-black font-bold">Deleting file...</h3>
+      }
+      <div class="flex justify-center items-center">
+        <div class="flex bg-black-400 gap-1 dots">
+          <div
+            class="w-[15px] h-[15px] bg-black rounded-full dots"
+            style="--delay: 200ms"
+          ></div>
+          <div
+            class="w-[15px] h-[15px] bg-black rounded-full dots"
+            style="--delay: 300ms"
+          ></div>
+          <div
+            class="w-[15px] h-[15px] bg-black rounded-full dots"
+            style="--delay: 400ms"
+          ></div>
+        </div>
+      </div>
+      } @if(documents.length > 0){
+      <!-- Documents List-->
+      <div
+        class="w-full mt-3 py-2 px-3 flex flex-col gap-2 overflow-y-scroll h-[75%]"
+      >
+        @for (item of filtredList; track $index) {
+        <!-- Document Card-->
+        <div
+          class="w-full border border-gray-500 flex justify-between p-4 rounded-md"
+        >
+          <div class="flex items-center gap-3">
+            <mat-icon>picture_as_pdf</mat-icon>
+            <span class="font-bold">{{ item.documentName }}</span>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <span>{{ item.createdOn }}</span>
+            <mat-icon
+              (click)="deleteDocumnets(item)"
+              class="hover:cursor-pointer"
+              >delete</mat-icon
+            >
+            <mat-icon (click)="onOpenClicked(item)" class="hover:cursor-pointer"
+              >arrow_forward_ios</mat-icon
+            >
+          </div>
+        </div>
+        <!--End Document Card-->
+        }
+      </div>
+      <!-- ENd Documents List-->
+      } @if(isLoading){
+      <div class="h-full w-full flex flex-col justify-center items-center">
+        <div class="w-full h-full flex flex-col justify-center items-center">
+          <div class="flex bg-black-400 gap-1 dots">
+            <div
+              class="w-[15px] h-[15px] bg-black rounded-full dots"
+              style="--delay: 200ms"
+            ></div>
+            <div
+              class="w-[15px] h-[15px] bg-black rounded-full dots"
+              style="--delay: 300ms"
+            ></div>
+            <div
+              class="w-[15px] h-[15px] bg-black rounded-full dots"
+              style="--delay: 400ms"
+            ></div>
+          </div>
+        </div>
+      </div>
+      } @if(!isLoading && documents.length == 0){
+      <div class="m-0 flex flex-col justify-center items-center h-full my-0">
+        <img
+          class="w-[200px]"
+          src="../../assets/folder.png"
+          alt="empty folder"
+        />
+        <span class="font-bold text-2xl">No documents found</span>
+      </div>
+      }
+    </div>
+  </div>
+</div>

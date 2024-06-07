@@ -1,0 +1,47 @@
+<div
+  class="w-full h-screen relative flex flex-col md:grid grid-cols-1 md:grid-cols-2"
+>
+  <div
+    class="bg-gray-900 overflow-hidden flex flex-col justify-center items-center text-white"
+  >
+    <img
+      class="w-[80px]"
+      src="../../assets/premium-quality.png"
+      alt="Premium logo"
+    />
+    <h3 class="font-bold text-2xl mt-4">Premium subscription</h3>
+    <h6 class="font-bold text-xl">10$</h6>
+
+    <div class="flex flex-col gap-3">
+      @for (feature of premiumPlanFeatures; track $index) {
+      <div class="flex justify-start gap-2">
+        <div class="bg-white rounded flex items-center">
+          <mat-icon class="text-black">done</mat-icon>
+        </div>
+        {{ feature }}
+      </div>
+      }
+    </div>
+  </div>
+  <div class="overflow-y-scroll flex flex-col items-center justify-center z-40">
+    <img class="w-[150px]" src="../../assets/Logo.png" alt="logo pdf ai" />
+    <div class="md:mt-6 w-full md:w-[490px]" #paypal></div>
+    @if(isProssessing){
+    <p class="font-semibold text-xl">Do not close this page ....</p>
+    <div class="flex bg-black-400 gap-1 dots">
+      <div
+        class="w-[15px] h-[15px] bg-black rounded-full dots"
+        style="--delay: 200ms"
+      ></div>
+      <div
+        class="w-[15px] h-[15px] bg-black rounded-full dots"
+        style="--delay: 300ms"
+      ></div>
+      <div
+        class="w-[15px] h-[15px] bg-black rounded-full dots"
+        style="--delay: 400ms"
+      ></div>
+    </div>
+    }
+  </div>
+</div>

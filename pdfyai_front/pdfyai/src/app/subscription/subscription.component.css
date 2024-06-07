@@ -1,0 +1,19 @@
+@keyframes animeDotos {
+    0%,44% {
+        transform: translateY(0px);
+    }
+
+    28%{
+        opacity: 0.4;
+        transform: translateY(-9px);
+    }
+    44%{
+        opacity: 0.2;
+       
+    }
+}
+
+
+.dots{
+    animation: animeDotos 1s ease-in-out infinite  var(--delay) !important;
+}

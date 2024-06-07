@@ -1,0 +1,34 @@
+<div [className]="isPremium ? freeClass : premiumClass">
+  @if (isPremium) {
+  <img
+    class="absolute w-[60px] top-[-20px] right-[-20px]"
+    src="../../assets/premium-quality.png"
+    alt=""
+  />
+  }
+  <div>
+    <h3 class="font-bold text-2xl">{{ title }}</h3>
+    <p class="text-2xl">{{ price }}$</p>
+  </div>
+
+  <div class="flex flex-col gap-3">
+    @for (item of features; track $index) {
+    <div class="flex justify-start gap-2">
+      <div class="bg-gray-900 rounded flex items-center">
+        <mat-icon class="text-white">done</mat-icon>
+      </div>
+      {{ item }}
+    </div>
+    }
+  </div>
+
+  <div>
+    <button
+      (click)="onSubscribeClicked()"
+      mat-stroked-button
+      class="bg-black text-white"
+    >
+      Start now
+    </button>
+  </div>
+</div>

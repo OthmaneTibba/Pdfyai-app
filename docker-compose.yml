@@ -1,0 +1,61 @@
+version: '3.4'
+
+
+volumes:
+ app_data:
+
+
+networks:
+ prod:
+  driver : bridge
+services:
+ front-app:
+  image : docker.io/othmanedev97/pdfyaifront
+  container_name : pdfyai-front
+  restart: unless-stopped
+  networks :
+    - prod
+  ports:
+   - 80:80
+  build:
+   context : ./pdfyai_front/pdfyai/
+   dockerfile : Dockerfile
+  
+
+ app_db:
+  image : postgres:latest
+  container_name : app_db
+  environment :
+   - POSTGRES_USER=postgres 
+   - POSTGRES_PASSWORD=postgres
+   - POSTGRES_DB=pdfyai_db_prod
+  ports :
+   - 5433:5432
+  volumes:
+   - app_data:/var/lib/postgresql/data
+  restart : always
+  networks: 
+   - prod
+
+
+
+
+    
+
+ pdfyai_api:
+  image: docker.io/othmanedev97/pdfyaiapi  
+  container_name : pdfyai_api
+  restart: unless-stopped
+  depends_on :
+   - app_db 
+  ports:
+   - 5078:80
+   - 5078:443
+  build:
+   context : ./pdfyai_api/
+   dockerfile : Dockerfile
+  environment:
+
+  networks:
+   - prod 
+ 

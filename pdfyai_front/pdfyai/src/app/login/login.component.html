@@ -1,0 +1,208 @@
+<app-header></app-header>
+
+<div id="home" class="flex flex-col overflow-x-hidden">
+  <div class="flex items-center w-full bg-gray-900 h-[600px] justify-center">
+    <div class="flex flex-col items-center md:items-start sm:ml-3">
+      <h1
+        style="--delay: 1.5s"
+        class="font-bold text-4xl mt-5 fadein text-white"
+      >
+        Upload your PDF
+      </h1>
+      <h1
+        style="--delay: 1.5s"
+        class="font-bold text-4xl fadein text-white text-center sm:text-start"
+      >
+        Unlock the Power of Your
+        <span class="text-yellow-600">PDFs with Ease.</span>
+      </h1>
+      <div
+        class="w-full flex md:justify-start justify-center my-3 fadein"
+        style="--delay: 1.5s"
+      >
+        <button
+          [routerLink]="'/start'"
+          mat-raised-button
+          class="bg-white z-[1] text-black"
+        >
+          Get started for free now
+        </button>
+      </div>
+    </div>
+    <img
+      src="../../assets/Chat bot-bro.png"
+      class="w-[500px] fadein2 md:block hidden"
+      style="--delay: 1.5s"
+      alt=""
+    />
+  </div>
+
+  <div class="flex my-3 flex-col items-center">
+    <div class="flex flex-col items-center">
+      <h2>How It Works ?</h2>
+      <div class="w-[150px] h-[5px] bg-gray-900 rounded-md"></div>
+    </div>
+
+    <div
+      id="how-it-works"
+      class="grid grid-cols-1 mx-8 md:mx-2 md:flex md:justify-center flex-wrap gap-8 mt-8"
+    >
+      <div
+        class="md:h-[250px] md:w-[350px] bg-white border border-gray-900 shadow-xl p-4 duration-500 scale-100 ease-in-out hover:cursor-pointer hover:scale-105"
+      >
+        <div
+          class="h-[40px] w-[40px] bg-gray-900 flex flex-col justify-center items-center rounded-md"
+        >
+          <span class="font-bold text-xl text-white">1</span>
+        </div>
+        <p class="mt-2 text-2xl font-bold">Log In</p>
+        <p>
+          Begin your journey by logging into our user-friendly platform. Your
+          account ensures a personalized and secure experience.
+        </p>
+      </div>
+      <div
+        class="md:h-[250px] md:w-[350px] bg-white shadow-xl border border-gray-900 p-4 duration-500 scale-100 ease-in-out hover:cursor-pointer hover:scale-105"
+      >
+        <div
+          class="h-[40px] w-[40px] bg-gray-900 flex flex-col justify-center items-center rounded-md"
+        >
+          <span class="font-bold text-xl text-white">2</span>
+        </div>
+        <p class="mt-2 text-2xl font-bold">Upload Your PDF</p>
+        <p>
+          Engage with your document like never before. Enter our intuitive chat
+          interface where you can ask questions, seek information, and interact
+          with your PDF
+        </p>
+      </div>
+
+      <div
+        class="md:h-[250px] md:w-[350px] bg-white shadow-xl border border-gray-900 p-4 scale-100 duration-500 ease-in-out hover:cursor-pointer hover:scale-105"
+      >
+        <div
+          class="h-[40px] w-[40px] bg-gray-900 flex flex-col justify-center items-center rounded-md"
+        >
+          <span class="font-bold text-xl text-white">3</span>
+        </div>
+        <p class="mt-2 text-2xl font-bold">Start Chatting</p>
+        <p>
+          Once your document is uploaded, Our advanced algorithms understand the
+          structure, text, and formatting, preparing the groundwork for the next
+          step.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-col items-center mt-6 chat-section">
+    <h2>Start Chating with your Documents</h2>
+    <div class="w-[150px] h-[5px] bg-gray-900 rounded-md"></div>
+  </div>
+
+  <div class="flex justify-center mx-5 md:mx-0 md:px-48 mt-6 chat-section">
+    <div class="shadow-xl">
+      <img class="object-cover" src="../../assets/screen.png" alt="Screen" />
+    </div>
+  </div>
+
+  <div id="features" class="flex flex-col items-center mb-5 mt-8">
+    <h2>What We Offer ? 🤔</h2>
+    <div class="w-[150px] h-[5px] bg-gray-900 rounded-md"></div>
+  </div>
+
+  <div class="md:grid grid-cols-1 lg:grid-cols-3 mx-4 gap-3 md:gap-16 md:px-48">
+    <div class="flex flex-col md:items-start items-center">
+      <h3 class="font-bold text-2xl">Seamless PDF Parsing</h3>
+      <p>
+        Easily upload your PDF documents and let our advanced parsing technology
+        do the work for you.
+      </p>
+      <p>
+        Instantly extract information without the hassle of manual searching.
+      </p>
+    </div>
+    <div class="flex flex-col md:items-start items-center">
+      <h3 class="font-bold text-2xl">Intelligent Retrieval</h3>
+      <p>
+        Engage with your document like never before. No need for technical
+        expertise
+      </p>
+      <p>Type your queries, and our AI will handle the rest.</p>
+    </div>
+    <div class="flex flex-col md:items-start items-center">
+      <h3 class="font-bold text-2xl">Customized PDF Generation</h3>
+      <p>
+        Copy and Generate PDF" feature. If you come across an answer that
+        resonates,
+      </p>
+      <p>
+        simply copy it, and let our system transform it into a polished PDF
+        document.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div id="pricing" class="flex flex-col items-center mb-5">
+  <h2>Pricing</h2>
+  <div class="w-[150px] h-[5px] bg-gray-900 rounded-md"></div>
+</div>
+
+<div class="flex justify-center flex-wrap gap-8">
+  <app-pricingcard
+    title="Free"
+    price="0"
+    (onSubscribeEvent)="onStartFreeClicked()"
+    [isPremium]="false"
+    [features]="freePlanFeatures"
+  ></app-pricingcard>
+  <app-pricingcard
+    title="Premium"
+    (onSubscribeEvent)="onStartFreeClicked()"
+    [features]="premiumPlanFeatures"
+    price="10"
+    [isPremium]="true"
+  ></app-pricingcard>
+</div>
+
+<div id="pricing" class="flex flex-col items-center mb-5 mt-2">
+  <h2>FAQ</h2>
+  <div class="w-[150px] h-[5px] bg-gray-900 rounded-md"></div>
+</div>
+
+<section class="flex flex-col items-center gap-3">
+  <app-faqcard
+    question="What do I get with the subscription?"
+    answer="With the $10 subscription, you receive a boost of +10,000 conversations and +100 additional documents, enhancing your overall experience and capabilities on our platform."
+  ></app-faqcard>
+
+  <app-faqcard
+    question="Is this a monthly subscription?"
+    answer="No, the $10 subscription is not a recurring monthly charge. It is a one-time payment that unlocks extra features, including +10,000 conversations and an additional +100 documents."
+  ></app-faqcard>
+
+  <app-faqcard
+    question="How long does the subscription last?"
+    answer="The benefits of the $10 subscription are permanent and do not expire. Once you make the payment, you'll have access to the increased limits for conversations and documents indefinitely."
+  ></app-faqcard>
+  <app-faqcard
+    question="What happens if there is an error while sending a message or uploading a file?"
+    answer="In the event of any errors during message sending or file uploading, rest assured that the number of your conversations and files will not be reduced. We understand that technical issues can occur, and we strive to ensure that your subscription benefits remain unaffected by such occurrences."
+  ></app-faqcard>
+</section>
+
+<footer
+  class="w-full bg-gray-900 h-[80px] text-white mt-3 flex justify-between px-4 items-center"
+>
+  <div class="flex flex-col">
+    <span>© {{ currentYear }} Pdfyai </span>
+    <span>{{ email }}</span>
+  </div>
+
+  <div>
+    <span class="hover:cursor-pointer" routerLink="/privacy-policy"
+      >Privacy policy | Attribution
+    </span>
+  </div>
+</footer>

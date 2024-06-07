@@ -1,0 +1,16 @@
+@keyframes fadein-frames {
+    from{
+        opacity: 0;
+    }
+
+   to{
+    opacity: 1;
+   }
+}
+
+
+
+.fadein{
+    animation: fadein-frames 2s linear;
+}
+

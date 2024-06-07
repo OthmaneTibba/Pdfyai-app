@@ -1,0 +1,7 @@
+@pdfyai_HostAddress = http://localhost:5078
+
+GET {{pdfyai_HostAddress}}/weatherforecast/
+Accept: application/json
+
+
+###
