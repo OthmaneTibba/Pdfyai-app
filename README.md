@@ -35,7 +35,8 @@ sequenceDiagram
     WebApp-->>User: Chat created
 ```
 
-## How we chat with the dociment ? 
+## How we chat with the dociment ?
+
 ```mermaid
 sequenceDiagram
     participant User
@@ -57,3 +58,8 @@ sequenceDiagram
         WebApp->>AngularApp: Send REST request
     end
 ```
+
+## some picture of the application
+
+![](./1.png)
+![](./3.png)
