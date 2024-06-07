@@ -34,3 +34,26 @@ sequenceDiagram
     PineconeDB-->>WebApp: Chunks saved
     WebApp-->>User: Chat created
 ```
+
+## How we chat with the dociment ? 
+```mermaid
+sequenceDiagram
+    participant User
+    participant WebApp
+    participant OpenAI
+    participant PineconeDB
+    participant GPT3
+    participant AngularApp
+
+    User->>WebApp: Enter question
+    WebApp->>OpenAI: Convert question to embedded vector
+    OpenAI-->>WebApp: Result
+    WebApp->>PineconeDB: Query similarity vectors
+    PineconeDB-->>WebApp: Plain text result
+    WebApp->>WebApp: Put result in context of prompt
+    WebApp->>GPT3: Send prompt
+    GPT3-->>WebApp: Response (stream)
+    loop For each stream
+        WebApp->>AngularApp: Send REST request
+    end
+```
